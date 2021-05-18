@@ -12,6 +12,9 @@
 }
 
 .card-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
     font-size: 14px
 }
 
@@ -37,5 +40,17 @@
     margin-top: 0px;
     margin-bottom: 8px;
     display: flex;
+}
+
+.card-body .bed-status{
+    flex: 1
+}
+
+.card-body .updated-time {
+    padding-right: 16px;
+}
+
+.card-body .updated-time span{
+    color: grey;
 }
 

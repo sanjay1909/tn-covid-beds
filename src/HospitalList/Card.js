@@ -3,12 +3,13 @@ import './style.css';
 
 export default function Card(props) {
 	const {data, showO2, showIcu} = props;
-	const {location, title, vacantICUBeds, vacantO2Beds, mobile} = data;
+	const {location, title, vacantICUBeds, vacantO2Beds, mobile, lastUpdated} = data;
 
 	
 	
 	const locationURL = `http://maps.google.com/?q=${location[1]},${location[0]}`;
 	const clickToCallUTL = `tel:+91${mobile}`;
+	const updatedTimeUI = ` ${lastUpdated} `;
 	return (
 		<div className='card'>
 			<div className='card-header'>
@@ -21,8 +22,13 @@ export default function Card(props) {
 				</div>
 			</div>
 			<div className='card-body'>
-				{showIcu ? <div>ICU: <b>{vacantICUBeds}</b></div> : null}
-				{showO2 ? <div>O2: <b>{vacantO2Beds}</b></div> : null}
+				<div className='bed-status'>
+					{showIcu ? <div>ICU: <b>{vacantICUBeds}</b></div> : null}
+					{showO2 ? <div>O2: <b>{vacantO2Beds}</b></div> : null}
+				</div>
+				<div className='updated-time'>
+					<span>Last Updated </span>{lastUpdated} <span>ago</span>
+				</div>
 			</div>
 		</div>
 	);

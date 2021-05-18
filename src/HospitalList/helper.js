@@ -18,18 +18,20 @@ function calculateDistance(lat1, lon1, lat2, lon2, unit = 'K') {
 	return dist
 }
 
-function compare( a, b, prop , isAsc = true) {
-	if ( a[prop] < b[prop] ){
-		return isAsc ? -1 : 1;
+function getSemanticDateDiff(epochTime){
+	const date = new Date(epochTime * 1000);
+	const currentDate = new Date();
+	const differenceInTime = currentDate.getTime() - date.getTime();
+	const differenceInMIn = differenceInTime / (1000 * 3600 );
+	const days = Math.floor(differenceInMIn / 24);
+	const mins =  Math.floor(differenceInMIn % 24);
+	if(days == 0){
+		return `${mins} Mins`
 	}
-	if ( a[prop] > b[prop] ){
-		return isAsc ? 1: -1;
-	}
-	return 0;
+	return `${days} Days ${mins} Mins`
 }
-
 function formatAsCardData(item, currentLocation){
-	const {Latitude, Longitude, Name, CovidBedDetails, _id, MobileNumber} = item;
+	const {Latitude, Longitude, Name, CovidBedDetails, _id, MobileNumber, BedDetailProcessedDate} = item;
 	const {VaccantICUBeds,VaccantO2Beds} = CovidBedDetails;
 	
 	const distance = currentLocation ? calculateDistance(Latitude,Longitude, currentLocation[0], currentLocation[1]) : null;
@@ -41,28 +43,41 @@ function formatAsCardData(item, currentLocation){
 		'vacantICUBeds': VaccantICUBeds,
 		'vacantO2Beds': VaccantO2Beds,
 		'distance':distance,
+		'lastUpdated': getSemanticDateDiff(BedDetailProcessedDate)
 	};
+}
+
+function JSClock(epochTime) {
+	const time = new Date(epochTime * 1000);
+	const hour = time.getHours();
+	const minute = time.getMinutes();
+	const second = time.getSeconds();
+	let temp = '' + ((hour > 12) ? hour - 12 : hour);
+	if (hour == 0)
+		temp = '12';
+	temp += ((minute < 10) ? ':0' : ':') + minute;
+	temp += ((second < 10) ? ':0' : ':') + second;
+	temp += (hour >= 12) ? ' P.M.' : ' A.M.';
+	return temp;
 }
 
 // sortBy: vacantICUBeds,  vacantO2Beds, distance
 function getCardsData(array, filterParams, currentLocation, sortBy = 'vacantICUBeds', searchQuery, hoveredHospital){
 	const {showIcu, showO2, districtId} = filterParams;
+	
 	let sortByValue = sortBy ? sortBy : ( showIcu ? 'vacantICUBeds' : (showO2 ? 'vacantO2Beds': undefined) );
+	const sortParams = {
+		prop: sortByValue,
+		isAsc: sortByValue == 'distance'
+	};
 	
 	const searchValue = hoveredHospital ? hoveredHospital : searchQuery;
-
-	const cards = filterData(array, filterParams, searchValue, (item)=>{
+	
+	const cards = filterData(array, filterParams, searchValue, sortParams,(item)=>{
 		return formatAsCardData(item, currentLocation)
 	});
 	
-	const sortedArray = sortByValue ? cards.sort((a, b)=>{
-		let isAsc = sortByValue == 'distance';
-		
-		return compare(a,b , sortByValue, isAsc)
-	}) : cards;
-	
-	return sortedArray;
-	
+	return cards;
 }
 
 export {

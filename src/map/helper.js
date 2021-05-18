@@ -1,7 +1,20 @@
 import {filterData} from '../Data';
 
+function getSemanticDateDiff(epochTime){
+	const date = new Date(epochTime * 1000);
+	const currentDate = new Date();
+	const differenceInTime = currentDate.getTime() - date.getTime();
+	const differenceInMIn = differenceInTime / (1000 * 3600 );
+	const days = Math.floor(differenceInMIn / 24);
+	const mins =  Math.floor(differenceInMIn % 24);
+	if(days == 0){
+		return `${mins} Mins`
+	}
+	return `${days} Days ${mins} Mins`
+}
+
 function formatAsGeoJsonData(item){
-	const {Latitude, Longitude, Name, CovidBedDetails} = item;
+	const {Latitude, Longitude, Name, CovidBedDetails,BedDetailProcessedDate} = item;
 	const {VaccantICUBeds,VaccantO2Beds} = CovidBedDetails;
 	
 	return {
@@ -13,7 +26,8 @@ function formatAsGeoJsonData(item){
 		"properties": {
 			'title': Name,
 			'vacantICUBeds': VaccantICUBeds,
-			'vacantO2Beds': VaccantO2Beds
+			'vacantO2Beds': VaccantO2Beds,
+			'lastUpdated': getSemanticDateDiff(BedDetailProcessedDate)
 		}
 	};
 }
@@ -25,7 +39,7 @@ function arrayToGeoJson(array, filterQuery, districtId, onlyData = false, search
 		districtId,
 	};
 	
-	const features = filterData(array, filterParams, searchQuery, formatAsGeoJsonData);
+	const features = filterData(array, filterParams, searchQuery, undefined,formatAsGeoJsonData);
 	
 	const data = {
 		'type': 'FeatureCollection',
@@ -40,6 +54,34 @@ function arrayToGeoJson(array, filterQuery, districtId, onlyData = false, search
 	};
 }
 
+function renderPopup(properties){
+	const {title, vacantICUBeds, vacantO2Beds, lastUpdated} = properties;
+	return `
+		<div>
+			<strong>${title}</strong>
+			<div>
+				<table>
+					<tbody>
+					<tr>
+						<td style="color:#818181;">ICU Beds: </td>
+						<td style="font-size: 13px;"><b>${vacantICUBeds}</b></td>
+					
+					</tr>
+					<tr>
+						<td style="color:#818181;">O2 Beds: </td>
+						<td style="font-size: 13px;"><b>${vacantO2Beds}</b></td>
+					</tr>
+					</tbody>
+				</table>
+				<div>
+					<span style="color:grey;">Last update:</span><b> ${lastUpdated} </b> <span style="color:grey;">ago</span>
+				</div>
+</div>
+		</div>
+		</div>
+	`
+}
+
 function createLayerFor(layerName, data, map, popup, onClickCallback) {
 	function mouseEnter(e){
 		// Change the cursor style as a UI indicator.
@@ -48,23 +90,7 @@ function createLayerFor(layerName, data, map, popup, onClickCallback) {
 		const coordinates = e.features[0].geometry.coordinates.slice();
 		const properties = e.features[0].properties;
 		
-		const {title, vacantICUBeds, vacantO2Beds} = properties;
-		
-		const description = `<strong>${title}</strong> <p>
-<table>
-<tbody>
-<tr>
-<td>ICU Beds: </td>
-<td>${vacantICUBeds}</td>
-
-</tr>
-<tr>
-<td>O2 Beds: </td>
-<td>${vacantO2Beds}</td>
-</tr>\
-</tbody>
-</table>
-</p>`;
+		const description = renderPopup(properties);
 		
 		// Ensure that if the map is zoomed out such that multiple
 		// copies of the feature are visible, the popup appears

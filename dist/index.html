@@ -6,18 +6,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .source{
+            display: flex;
+            padding-left: 8px;
+            padding-right: 8px;
             font-size: 10px;
             justify-content: space-between;
+        }
+        .source .empty-div{
+            flex: 1;
+        }
+        .source .github{
+            margin-right: 4px;
         }
     </style>
 </head>
 <body>
 <div class="source">
-    <span>
+    <span class="github">
         Source: <a href="https://github.com/sanjay1909/tn-covid-beds">github</a>
     </span>
     <span>
         Developed by: <a href="https://www.linkedin.com/in/sanjay-krishna-anbalagan/">Sanjay Krishna</a>
+    </span>
+    <div class="empty-div">
+
+    </div>
+    <span>
+        Data: <a href="https://tncovidbeds.tnega.org/">TN Covid Beds</a>
     </span>
 </div>
 <div id="app">

@@ -35,7 +35,7 @@ export default function Map(props) {
 				enableHighAccuracy: true
 			},
 			fitBoundsOptions: {
-				maxZoom: 12
+				maxZoom: 11
 			},
 			trackUserLocation: true
 		});

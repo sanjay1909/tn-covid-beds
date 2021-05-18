@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server",
     "build": "node_modules/.bin/webpack --progress --config webpack.config.js",
-    "publish": "git push origin `git subtree split --prefix dist master`:gh-pages --force"
+    "publish": "git push origin `git subtree split --prefix dist master`:demo --force"
   },
   "author": "",
   "license": "ISC",

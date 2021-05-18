@@ -1,0 +1,17 @@
+.map-controls{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.map-controls label {
+    display: flex;
+    align-items: center;
+    margin: 4px 16px 4px 4px;
+}
+
+
+
+.map-controls .district-select {
+    flex: 1
+}

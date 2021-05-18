@@ -17,7 +17,7 @@ export default function Search(props) {
 			<input type="text"
 			       value={searchQuery}
 			       onChange={handleChange}
-			       placeholder="Search"/>
+			       placeholder="Search Hospital"/>
 			{searchQuery ? <i className="fas fa-times" onClick={clearHandler}></i> : null }
 		</div>
 	);

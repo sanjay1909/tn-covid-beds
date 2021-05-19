@@ -43,7 +43,7 @@ function getDistricts(prop){
 function forwardGeoCoding(name){
 	return axios({
 		method: 'get',
-		url: `${MAPBOX_GEOCODING}${name}.json?access_token=${MAPBOX_ACCESS_TOKEN}`
+		url: `${MAPBOX_GEOCODING}${name},Tamil Nadu.json?types=district&access_token=${MAPBOX_ACCESS_TOKEN}`
 	}).then((response)=>{
 		return response.data.features[0]
 	});

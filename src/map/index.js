@@ -2,7 +2,7 @@ import React, {useState,useRef,useEffect} from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import {createLayerFor, filterMapData} from './helper'; // eslint-disable-line import/no-webpack-loader-syntax
-import {getDistrictCoords} from '../service'; // eslint-disable-line import/no-webpack-loader-syntax
+import {getDistrictCoordinates} from '../service'; // eslint-disable-line import/no-webpack-loader-syntax
 import './style.css';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FuamF5MTkwOSIsImEiOiJja29ueGplaWcwNTF4MnBtcHYycXR2cm5tIn0.nMzNmf0lrqBXwxe6Sx7R8w';
@@ -142,7 +142,7 @@ export default function Map(props) {
 		if(mapData ){
 			const map = mapRef.current;
 			if(filterParams.districtId && districtName){
-				getDistrictCoords(districtName).then((districtCoord)=>{
+				getDistrictCoordinates(districtName).then((districtCoord)=>{
 					map.flyTo({
 // These options control the ending camera position: centered at
 // the target, at zoom level 9, and north up.

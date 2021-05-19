@@ -42,10 +42,7 @@ function filterData(data, filterParams = defaultFilterParams, searchQuery, sortP
 		return filteredAndFormattedData;
 	}
 	
-	data.map((item , index)=>{
-		if(index == 0){
-			console.log(item);
-		}
+	data.map((item )=>{
 		const dataForFilter = getter(item);
 		const {hospitalName, icuBeds, o2Beds, districtID } = dataForFilter;
 		

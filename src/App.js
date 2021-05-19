@@ -3,7 +3,7 @@ import Map from './map';
 import HospitalList from './HospitalList';
 import MapControls from './map-controls';
 import ListControls from './list-controls';
-import {getDistrictOptions, getAllTamilNaduHospitals} from './service';
+import {getDistricts, getAllTamilNaduHospitals} from './service';
 import './app.css'
 
 const options = [
@@ -28,7 +28,7 @@ export default function App() {
 	const [nearbyHospitals, setNearbyHospitals] = useState();
 	
 	useEffect(() => {
-		getDistrictOptions().then((options)=>{
+		getDistricts('options').then((options)=>{
 			setDistrictOptions(options)
 			setDistrict(options[0]);
 		});

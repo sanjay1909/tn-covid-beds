@@ -1,3 +1,7 @@
+.map-controls-container {
+    padding: 8px;
+}
+
 .map-controls{
     display: flex;
     flex-direction: row;

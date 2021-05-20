@@ -1,29 +1,53 @@
 
 body {
     font-family: Roboto, system-ui, sans-serif;
-}
-.app {
+    height: 100vh; /*This will make app capitalize full screen*/
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    margin: 0;
 }
 
-.map-controls-container {
-    padding: 8px;
+.app {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;  /* calculated height (flex:1) based on its parents overridden by overflowing content in its tree */
 }
 
 .map-container {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex: .62;
 }
-
-
-.list-controls-container {
-    padding: 8px;
-}
-
 
 .list-container {
-    flex: .5;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex: .38;
+    overflow: hidden;  /* calculated height (flex:1) based on its parents overridden by overflowing content in its tree */
 }
+
+@media  (orientation: portrait) {
+    .app  {
+        flex-direction: column;
+    }
+
+    .map-container {
+        flex: .5;
+    }
+
+    .list-container {
+        flex: .5;
+    }
+
+    .list-controls  {
+        flex-direction: row;
+    }
+
+    .list-controls .sort-select {
+        width: auto
+    }
+}
+
+
 

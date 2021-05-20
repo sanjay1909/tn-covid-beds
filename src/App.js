@@ -79,34 +79,40 @@ export default function App() {
 	const listSearchQuery = searchInitiatorRef.current == 'list' ? '' : searchQuery;
 	
 	return (
-		<div className='app'>
-			<MapControls enableO2={showO2}
-			          district={district}
-			          districtOptions={districtOptions}
-			          onDistrictChange={onDistrictChangeHandler}
-			          onO2Change={setShowO2}
-			          onIcuChange={setShowIcu}
-			          enableIcu={showIcu}/>
-			<Map onCurrentLocation={currentLocationLoadedHandler}
-			     currentLocation={currentLocation}
-			     filterParams={filterParams}
-			     searchQuery={mapSearchQuery}
-			     districtName={district ? district.label : null}
-			     onClick={mapPointClickHandler}
-			     mapData={nearbyHospitals}/>
-      <ListControls sortBy={sortBy}
-                    sortOptions={options}
-                    onSort={setSortBy}
-                    searchQuery={listSearchQuery}
-                    onSearch={listSearchHandler}/>
-			<HospitalList filterParams={filterParams}
-			              searchQuery={searchQuery}
-			              onClick={listItemClickHandler}
-			              sortBy={ sortBy ? sortBy.value: undefined }
-			              currentLocation={currentLocation}
-			              data={nearbyHospitals}/>
+		<>
+			<div className='map-container'>
+				<MapControls enableO2={showO2}
+				             district={district}
+				             districtOptions={districtOptions}
+				             onDistrictChange={onDistrictChangeHandler}
+				             onO2Change={setShowO2}
+				             onIcuChange={setShowIcu}
+				             enableIcu={showIcu}/>
+				<Map onCurrentLocation={currentLocationLoadedHandler}
+				     currentLocation={currentLocation}
+				     filterParams={filterParams}
+				     searchQuery={mapSearchQuery}
+				     districtName={district ? district.label : null}
+				     onClick={mapPointClickHandler}
+				     mapData={nearbyHospitals}/>
+			</div>
+			<div className='list-container'>
+				<ListControls sortBy={sortBy}
+				              sortOptions={options}
+				              onSort={setSortBy}
+				              searchQuery={listSearchQuery}
+				              onSearch={listSearchHandler}/>
+				<HospitalList filterParams={filterParams}
+				              searchQuery={searchQuery}
+				              onClick={listItemClickHandler}
+				              sortBy={ sortBy ? sortBy.value: undefined }
+				              currentLocation={currentLocation}
+				              data={nearbyHospitals}/>
+			</div>
 			
-		</div>
+   
+			
+		</>
 		
 	);
 }

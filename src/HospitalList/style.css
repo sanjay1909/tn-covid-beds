@@ -1,3 +1,8 @@
+.list-view {
+    flex: 1;
+    overflow: auto;
+}
+
 .card {
     margin: 8px;
     padding: 8px;
@@ -24,12 +29,15 @@
 }
 
 .card-links {
-    align-self: flex-end;
     display: flex;
-    flex: .2;
+    flex: .25;
     justify-content: space-around;
     font-size: 24px;
     color: grey;
+}
+
+.card-links i {
+    margin-right: 2px;
 }
 
 .card-links a{
@@ -43,11 +51,13 @@
 }
 
 .card-body .bed-status{
-    flex: 1
+    flex: .35
 }
 
 .card-body .updated-time {
+    flex: .65;
     padding-right: 16px;
+    word-wrap: break-word;
 }
 
 .card-body .updated-time span{

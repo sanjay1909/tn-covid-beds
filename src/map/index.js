@@ -175,6 +175,6 @@ export default function Map(props) {
 	
 	
 	return (
-		<div ref={mapContainer} className="map-container" />
+		<div ref={mapContainer} className="map-view" />
 	);
 }

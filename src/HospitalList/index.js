@@ -22,7 +22,7 @@ export default function HospitalList(props) {
 		             showIcu={filterParams.showIcu}/>
 	});
 	return (
-		<div className='list-container'>
+		<div className='list-view'>
 			{cardsUI}
 		</div>
 	);

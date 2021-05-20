@@ -11,14 +11,14 @@ export default function Search(props) {
 	function clearHandler(){
 		onChange && typeof onChange == 'function' && onChange('')
 	}
-	
+	const iconClassName = searchQuery ? "fas fa-times" : "fas fa-search";
 	return (
 		<div className='search'>
 			<input type="text"
 			       value={searchQuery}
 			       onChange={handleChange}
 			       placeholder="Search Hospital"/>
-			{searchQuery ? <i className="fas fa-times" onClick={clearHandler}></i> : null }
+			<i className={iconClassName} onClick={clearHandler}></i>
 		</div>
 	);
 }

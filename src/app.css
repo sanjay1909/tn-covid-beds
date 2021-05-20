@@ -45,7 +45,12 @@ body {
     }
 
     .list-controls .sort-select {
-        width: auto
+        width: auto;
+        margin-bottom: 0px;
+    }
+
+    .list-controls input[type=text] {
+        width: 150px;
     }
 }
 

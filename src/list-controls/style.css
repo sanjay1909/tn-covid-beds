@@ -2,12 +2,11 @@
 
 
 .list-controls-container {
-    padding: 8px;
+    padding: 8px 8px 0px;
 }
 
 .list-controls{
     display: flex;
-    padding: 8px;
     align-items: center;
     flex-direction: column;
 }
@@ -17,7 +16,6 @@ input[type=text] {
     padding: 9px 28px 9px 9px;
     margin-left: 8px;
     font-size: 14px;
-    width: 150px;
     border-radius: 8px;
     border: 1px solid lightgrey;
     flex: 1;
@@ -41,7 +39,8 @@ input[type=text] {
     flex: 1;
     display: flex;
     align-items: center;
-    width: 100%
+    width: 100%;
+    margin-bottom: 4px;
 }
 
 .list-controls .sort-select .select{

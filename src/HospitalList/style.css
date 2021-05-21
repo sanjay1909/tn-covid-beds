@@ -54,6 +54,13 @@
     flex: .35
 }
 
+.card-body .bed-status div{
+    display: flex;
+}
+.card-body .bed-status div label{
+    flex: .34;
+}
+
 .card-body .updated-time {
     flex: .65;
     padding-right: 16px;
@@ -62,5 +69,6 @@
 
 .card-body .updated-time span{
     color: grey;
+    font-size: 12px;
 }
 

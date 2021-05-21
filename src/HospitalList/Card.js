@@ -23,11 +23,17 @@ export default function Card(props) {
 			</div>
 			<div className='card-body'>
 				<div className='bed-status'>
-					{showIcu ? <div>ICU: <b>{vacantICUBeds}</b></div> : null}
-					{showO2 ? <div>O2: <b>{vacantO2Beds}</b></div> : null}
+					{showIcu ?  <div>
+												<label>ICU</label>
+												<span><b>{vacantICUBeds}</b></span>
+											</div> : null}
+					{showO2 ?   <div>
+												<label>O2</label>
+												<span><b>{vacantO2Beds}</b></span>
+											</div> : null}
 				</div>
 				<div className='updated-time'>
-					<span>Last Updated </span>{lastUpdated} <span>ago</span>
+					<span>Last Updated </span>{lastUpdated} {lastUpdated == 'Now' ? '' : <span>ago</span>}
 				</div>
 			</div>
 		</div>

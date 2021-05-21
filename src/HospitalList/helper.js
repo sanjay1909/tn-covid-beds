@@ -25,10 +25,22 @@ function getSemanticDateDiff(epochTime){
 	const differenceInMIn = differenceInTime / (1000 * 3600 );
 	const days = Math.floor(differenceInMIn / 24);
 	const mins =  Math.floor(differenceInMIn % 24);
-	if(days == 0){
-		return `${mins} Mins`
+	
+	const daysWording = days == 0 ? '' : (days == 1 ? 'Day' : 'Days');
+	const minsWording = mins == 0 ? '' : (mins == 1 ? 'Min' : 'Mins');
+	if(!daysWording && !minsWording){
+		return `Now`
 	}
-	return `${days} Days ${mins} Mins`
+	
+	if(!daysWording){
+		return `${mins} ${minsWording}`
+	}
+	
+	if(!minsWording){
+		return `${days} ${daysWording}`
+	}
+	
+	return `${days} ${daysWording} ${mins} ${minsWording}`;
 }
 function formatAsCardData(item, currentLocation){
 	const {Latitude, Longitude, Name, CovidBedDetails, _id, MobileNumber, BedDetailProcessedDate} = item;

@@ -9,7 +9,8 @@ export default function Card(props) {
 	
 	const locationURL = `http://maps.google.com/?q=${location[1]},${location[0]}`;
 	const clickToCallUTL = `tel:+91${mobile}`;
-	const updatedTimeUI = ` ${lastUpdated} `;
+	const icuStatusStyle = vacantICUBeds == 0 ? {color: 'grey'} : null;
+	const o2StatusStyle = vacantO2Beds == 0 ? {color: 'grey'} : null;
 	return (
 		<div className='card'>
 			<div className='card-header'>
@@ -24,12 +25,12 @@ export default function Card(props) {
 			<div className='card-body'>
 				<div className='bed-status'>
 					{showIcu ?  <div>
-												<label>ICU</label>
-												<span><b>{vacantICUBeds}</b></span>
+												<label style={icuStatusStyle}>ICU</label>
+												<span style={icuStatusStyle}><b>{vacantICUBeds}</b></span>
 											</div> : null}
 					{showO2 ?   <div>
-												<label>O2</label>
-												<span><b>{vacantO2Beds}</b></span>
+												<label style={o2StatusStyle}>O2</label>
+												<span style={o2StatusStyle}><b>{vacantO2Beds}</b></span>
 											</div> : null}
 				</div>
 				<div className='updated-time'>

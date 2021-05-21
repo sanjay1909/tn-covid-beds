@@ -4,7 +4,7 @@
 }
 
 .card {
-    margin: 8px;
+    margin: 4px;
     padding: 8px;
     border: 1px solid lightgrey;
     border-radius: 4px;
@@ -32,7 +32,7 @@
     display: flex;
     flex: .25;
     justify-content: space-around;
-    font-size: 24px;
+    font-size: 22px;
     color: grey;
 }
 

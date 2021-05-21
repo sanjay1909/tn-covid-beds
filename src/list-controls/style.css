@@ -47,7 +47,6 @@ input[type=text] {
 
 .list-controls .sort-select .select{
     flex: 1;
-    margin-left: 2px;
 
 }
 

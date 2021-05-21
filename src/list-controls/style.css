@@ -25,7 +25,9 @@ input[type=text] {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
     flex: 1;
+
 }
 
 .list-controls .fas {
@@ -41,9 +43,22 @@ input[type=text] {
     align-items: center;
     width: 100%;
     margin-bottom: 4px;
+    position: relative;
 }
 
 .list-controls .sort-select .select{
     flex: 1;
     margin-left: 2px;
+
+}
+
+.list-controls .sort-select label{
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    font-size: 11px;
+    background: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: grey;
 }

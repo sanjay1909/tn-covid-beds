@@ -10,13 +10,14 @@ export default function ListControls(props) {
 		<div className='list-controls-container'>
 			<div className='list-controls'>
 				<div className='sort-select'>
-					<label>Sort</label>
+					
 					<div className='select'>
-					<Select options={sortOptions}
-					        onChange={onSort}
-					        value={sortBy}
-					        placeholder="Sort By" />
+						<Select options={sortOptions}
+						        onChange={onSort}
+						        value={sortBy}
+						        placeholder="Sort By" />
 					</div>
+					<label>Sort By</label>
 				</div>
 				<Search searchQuery={searchQuery}
 				        onChange={onSearch}/>

@@ -65,6 +65,7 @@
     flex: .65;
     padding-right: 16px;
     word-wrap: break-word;
+    text-align: right;
 }
 
 .card-body .updated-time span{
